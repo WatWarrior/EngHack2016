@@ -17,11 +17,11 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 var bot = new builder.UniversalBot(connector, {
-   localizerSettings: {
-   botLocalePath: "./locale",
-   defaultLocale: "en"
- }
- });
+        localizerSettings: {
+        botLocalePath: "./locale",
+        defaultLocale: "en"
+    }
+});
 server.post('/api/messages', connector.listen());
 
 //=========================================================
@@ -29,10 +29,24 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', [
+    function (session, args, next) {
+        if (!session.userData.name) {
+            session.beginDialog('/profile');
+        } else {
+            next();
+        }
+    },
+    function (session, results) {
+        session.send('Hello %s!', session.userData.name);
+    }
+]);
+
+bot.dialog('/profile', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
     },
     function (session, results) {
-        session.send('Hello %s!', results.response);
+        session.userData.name = results.response;
+        session.endDialog();
     }
 ]);
