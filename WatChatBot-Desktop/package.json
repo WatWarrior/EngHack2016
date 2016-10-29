@@ -19,6 +19,7 @@
   "homepage": "https://github.com/WatWarrior/EngHack2016#readme",
   "dependencies": {
     "botbuilder": "^3.4.0",
-    "restify": "^4.2.0"
+    "restify": "^4.2.0",
+    "uwaterloo-api": "^1.0.2"
   }
 }
