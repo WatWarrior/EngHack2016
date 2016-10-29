@@ -42,6 +42,26 @@ bot.dialog('/', dialog);
 
 // Add intent handlers
 
+dialog.matches('FindPerson', [
+   function (session, args, next){
+   var person = builder.EntityRecognizer.findEntity(args.entities, 'person');
+
+       uwclient.get('/directory/'+ person.entity ,function(err, res){
+
+        if(!res.data){
+            session.send('Cannot find any information about this person, Sorry!' );
+        }
+        
+        else{
+           var name = res.data.full_name;
+         var department = res.data.department;
+         
+         session.send('The person\'s name is ' + name + ' ,in ' + department );
+
+        }
+       });    
+   }]);
+
 
 dialog.matches('ParkingLot', [
     function (session,  next){
@@ -52,14 +72,6 @@ dialog.matches('ParkingLot', [
     
     }]);
 
-dialog.matches('FindPerson', [
-    function (session, args, next){
-    var person = builder.EntityRecognizer.findEntity(args.entities, 'person');
-
-        uwclient.get('/directory/'+ person.entity ,function(err, res){
-            console.log(res);
-        });    
-    }]);
 
 
 // dialog.matches('weather', [
@@ -85,8 +97,8 @@ dialog.matches('CourseInfo', [
         var term_info = res.data[0].term;
         var academic_info = res.data[0].academic_level;
 
-        session.send('course title is ' + title_info + ' ,course unit is ' + unit_info + ' ,in ' + term_info
-                    + ' ,for ' +  academic_info + '.'); 
+        session.send('course title is ' + title_info + ', course unit is ' + unit_info + ', in term #' + term_info
+                    + ', for ' +  academic_info + '.'); 
        }
        
     });
