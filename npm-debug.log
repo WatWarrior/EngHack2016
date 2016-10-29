@@ -9,8 +9,8 @@
 6 silly lifecycle watchatbot@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle watchatbot@1.0.0~start: watchatbot@1.0.0
 8 verbose lifecycle watchatbot@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle watchatbot@1.0.0~start: PATH: /Users/ziqzhou/.nvm/versions/node/v6.7.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/ziqzhou/ZZQ/EngHack2016/WatChatBot-Desktop/node_modules/.bin:/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin:/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin:/Users/ziqzhou/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-10 verbose lifecycle watchatbot@1.0.0~start: CWD: /Users/ziqzhou/ZZQ/EngHack2016/WatChatBot-Desktop
+9 verbose lifecycle watchatbot@1.0.0~start: PATH: /Users/ziqzhou/.nvm/versions/node/v6.7.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/ziqzhou/ZZQ/EngHack2016/node_modules/.bin:/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin:/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin:/Users/ziqzhou/anaconda/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle watchatbot@1.0.0~start: CWD: /Users/ziqzhou/ZZQ/EngHack2016
 11 silly lifecycle watchatbot@1.0.0~start: Args: [ '-c', 'node app.js' ]
 12 silly lifecycle watchatbot@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle watchatbot@1.0.0~start: Failed to exec start script
@@ -25,7 +25,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid watchatbot@1.0.0
-16 verbose cwd /Users/ziqzhou/ZZQ/EngHack2016/WatChatBot-Desktop
+16 verbose cwd /Users/ziqzhou/ZZQ/EngHack2016
 17 error Darwin 15.6.0
 18 error argv "/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin/node" "/Users/ziqzhou/.nvm/versions/node/v6.7.0/bin/npm" "start"
 19 error node v6.7.0

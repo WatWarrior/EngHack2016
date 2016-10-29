@@ -1,7 +1,7 @@
  // var restify = require('restify');
  var builder = require('botbuilder');
  var uwaterlooApi = require('uwaterloo-api'); 
- var http = require('http');
+ // var http = require('http');
 
  var uwclient = new uwaterlooApi({
   API_KEY : '6deaa85efc3f6d96a02db0acf451f82f'
@@ -25,18 +25,15 @@ var connector = new builder.ConsoleConnector().listen();
 
 // Create bot and bind to console
 
- var bot = new builder.UniversalBot(connector, {
+var bot = new builder.UniversalBot(connector, {
          localizerSettings: {
          botLocalePath: "./locale",
          defaultLocale: "en"
      }
  });
 
-// Create LUIS recognizer that points at our model and add it as the root '/' dialog for our Cortana Bot.
 var model = 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=1d8c4b5de39944eea0dbef322202c269&q=';
-
 var model_trained = 'https://api.projectoxford.ai/luis/v1/application?id=33148aa9-5199-4704-89f3-a91e68bff944&subscription-key=8dd0978101ba45b496273fdf065f91d3&q=';
-
 var recognizer = new builder.LuisRecognizer(model);
 var recognizer_trained = new builder.LuisRecognizer(model_trained)
 
@@ -45,21 +42,32 @@ bot.dialog('/', dialog);
 
 // Add intent handlers
 
-dialog.matches('Weather', [
-    function (session, args, next){
-        uwclient.get('/weather/current',function(err, res){
-            console.log(res);
-        })    
-    }]);
 
 dialog.matches('ParkingLot', [
-    function (session, args, next){
+    function (session,  next){
         // uwclient.get('/weather/current',function(err, res){
         //     console.log(res);
         // })
-    session.send('UW has four parking lots, which are C, N, W, X')
+    session.send('UW has four parking lots, which are C, N, W, X');
     
     }]);
+
+dialog.matches('FindPerson', [
+    function (session, args, next){
+    var person = builder.EntityRecognizer.findEntity(args.entities, 'person');
+
+        uwclient.get('/directory/'+ person.entity ,function(err, res){
+            console.log(res);
+        });    
+    }]);
+
+
+// dialog.matches('weather', [
+//     function (session, next){
+//         uwclient.get('/weather/current',function(err, res){
+//             console.log(res);
+//         });    
+//     }]);
 
 dialog.matches('CourseInfo', [
 	function (session, args, next){
