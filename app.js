@@ -1,4 +1,4 @@
- // var restify = require('restify');
+  var restify = require('restify');
  var builder = require('botbuilder');
  var uwaterlooApi = require('uwaterloo-api'); 
  // var http = require('http');
@@ -8,19 +8,19 @@
 });
 
  // Setup Restify Server
- // var server = restify.createServer();
- // server.listen(process.env.port || process.env.PORT || 3978, function () {
- //    console.log('%s listening to %s', server.name, server.url); 
- // });
+  var server = restify.createServer();
+  server.listen(process.env.port || process.env.PORT || 3978, function () {
+    console.log('%s listening to %s', server.name, server.url); 
+  });
   
 // Create chat bot
-var connector = new builder.ConsoleConnector().listen();
- // var connector = new builder.ChatConnector({
- //     appId: process.env.MICROSOFT_APP_ID,
- //     appPassword: process.env.MICROSOFT_APP_PASSWORD
- // });
+//var connector = new builder.ConsoleConnector().listen();
+ var connector = new builder.ChatConnector({
+     appId: process.env.MICROSOFT_APP_ID,
+     appPassword: process.env.MICROSOFT_APP_PASSWORD
+ });
 
- // server.post('/api/messages', connector.listen());
+ server.post('/api/messages', connector.listen());
 
 
 // Create bot and bind to console
